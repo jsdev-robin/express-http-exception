@@ -1,0 +1,57 @@
+{
+  "name": "express-http-exception",
+  "version": "1.1.0",
+  "private": false,
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "http",
+    "exception",
+    "error",
+    "error-handling",
+    "http-error",
+    "status-code",
+    "nodejs",
+    "typescript",
+    "backend",
+    "express",
+    "operational-error",
+    "api-error",
+    "error-class",
+    "custom-error",
+    "error-handler"
+  ],
+  "author": "jsdev.robin@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jsdev-robin/express-http-exception/issues"
+  },
+  "homepage": "https://github.com/jsdev-robin/express-http-exception#readme",
+  "description": "Custom HTTP exception class for Node.js and Express with status code handling and operational error support.",
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^25.5.0",
+    "eslint": "^10.1.0",
+    "globals": "^17.4.0",
+    "jiti": "^2.6.1",
+    "typescript": "^5.2.2",
+    "typescript-eslint": "^8.57.2"
+  }
+}
