@@ -1,45 +1,30 @@
-# HTTPException
+# express-http-exception
 
-A custom error class for handling HTTP errors in a structured and operational manner.
+[![npm version](https://badge.fury.io/js/express-http-exception.svg)](https://www.npmjs.com/package/express-http-exception)
+[![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
 
-## Class Definition
+A lightweight, TypeScript-friendly HTTP exception class for Node.js and Express applications. Provides consistent error handling with automatic status categorization and operational error tracking.
 
-```typescript
-export class HTTPException extends Error {
-  readonly statusCode: number;
-  readonly status: string;
-  readonly isOperational: boolean;
+## Features
 
-  constructor(message: string, statusCode: number) {
-    super(message);
-    this.statusCode = statusCode;
-    this.status = statusCode.toString().startsWith('4') ? 'fail' : 'error';
-    this.isOperational = true;
-    Error.captureStackTrace(this, this.constructor);
-  }
-}
+- 🚀 **Simple & Lightweight** - Minimal footprint with zero dependencies
+- 📦 **TypeScript Support** - Full type definitions included
+- 🔍 **Automatic Status Categorization** - Automatically sets `fail` for 4xx errors and `error` for 5xx errors
+- 🛡️ **Operational Error Flag** - Distinguish between operational and programming errors
+- 🎯 **Express-Ready** - Designed to work seamlessly with Express error handlers
+- 📝 **Stack Trace Support** - Preserves stack traces for easier debugging
+
+## Installation
+
+```bash
+npm install express-http-exception
 ```
 
-## Properties
+```tsx
+import { HTTPException } from 'express-http-exception';
 
-| Property        | Type      | Description                                                                  |
-| --------------- | --------- | ---------------------------------------------------------------------------- |
-| `statusCode`    | `number`  | The HTTP status code (e.g., 404, 500)                                        |
-| `status`        | `string`  | Either `"fail"` (for 4xx client errors) or `"error"` (for 5xx server errors) |
-| `isOperational` | `boolean` | Always `true`, indicating this is an expected operational error              |
-
-## Example Usage
-
-```typescript
-// Client error (4xx)
-const notFound = new HTTPException('Resource not found', 404);
-console.log(notFound.statusCode); // 404
-console.log(notFound.status); // "fail"
-console.log(notFound.message); // "Resource not found"
-
-// Server error (5xx)
-const serverError = new HTTPException('Database connection failed', 500);
-console.log(serverError.statusCode); // 500
-console.log(serverError.status); // "error"
-console.log(serverError.isOperational); // true
+// Throw HTTP errors
+throw new HTTPException('User not found', 404);
+throw new HTTPException('Bad request', 400);
+throw new HTTPException('Server error', 500);
 ```
